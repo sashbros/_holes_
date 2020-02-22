@@ -27,6 +27,7 @@ public class bullet : MonoBehaviour
             if (hitInfo.collider.CompareTag("Enemy")) {
                 hitInfo.collider.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(transform.up * killForce, hitInfo.collider.transform.position);
                 Instantiate(killEnemyEffect, hitInfo.collider.transform.position, Quaternion.LookRotation(transform.up));
+                hitInfo.collider.transform.parent.gameObject.GetComponent<EnemyScript>().killed = true;
             }
             DestroyBullet();
         }

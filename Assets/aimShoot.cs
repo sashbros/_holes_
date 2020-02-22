@@ -6,6 +6,7 @@ public class aimShoot : MonoBehaviour
 {
     public GameObject player;
     public GameObject bullet;
+    public GameObject gunShell;
     public Transform gunStartRight;
     public Transform gunStartLeft;
     
@@ -13,7 +14,8 @@ public class aimShoot : MonoBehaviour
     public float startTimeBtwShots;
 
     public float offset;
-    private int running=1;
+    [HideInInspector]
+    public int running=1;
     void Update() {
         if (player.GetComponent<playerMovement>().input < 0) {
             running = -1;
@@ -44,6 +46,8 @@ public class aimShoot : MonoBehaviour
             if (timeBtwShots <= 0) {
                 if (Input.GetMouseButton(0)) {
                     Instantiate(bullet, gunStartRight.position, transform.rotation * Quaternion.Euler(0f, 0f, -90f));
+                    Instantiate(gunShell, (gunStartRight.position+gunStartLeft.position)/2f, Quaternion.identity);
+                    // shell = Instantiate(gunShell, player.transform.position, Quaternion.identity);
                     timeBtwShots = startTimeBtwShots;
                 }
             }
@@ -59,6 +63,7 @@ public class aimShoot : MonoBehaviour
             if (timeBtwShots <= 0) {
                 if (Input.GetMouseButton(0)) {
                     Instantiate(bullet, gunStartLeft.position, transform.rotation * Quaternion.Euler(0f, 0f, 90f));
+                    Instantiate(gunShell, (gunStartRight.position+gunStartLeft.position)/2f, Quaternion.identity);
                     timeBtwShots = startTimeBtwShots;
                 }
             }

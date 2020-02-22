@@ -99,7 +99,7 @@ MonoBehaviour:
   whatIsSolid:
     serializedVersion: 2
     m_Bits: 2304
-  killForce: 50000
+  killForce: 8000
   killEnemyEffect: {fileID: 6178723983765847384, guid: 8e3c60a8142371041ad1e246751e4878,
     type: 3}
 --- !u!96 &96350794733410912

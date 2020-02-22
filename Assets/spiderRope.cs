@@ -64,8 +64,6 @@ public class spiderRope : MonoBehaviour
         if (timer != null) {
             StopCoroutine(timer);
             timer = null;
-            Debug.Log("ygiuhjkl");
-            origin.gameObject.GetComponent<Animator>().SetTrigger("rotate");
         }
     }
     private void OnTriggerEnter2D(Collider2D other) {
@@ -80,7 +78,7 @@ public class spiderRope : MonoBehaviour
         update = false;
         line.SetPosition(0, Vector2.zero);
         line.SetPosition(1, Vector2.zero);
-        // origin.gameObject.GetComponent<Animator>().SetTrigger("rotate");
+        origin.gameObject.GetComponent<Animator>().SetTrigger("rotate");
 
     }
 }

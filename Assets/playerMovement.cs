@@ -11,7 +11,8 @@ public class playerMovement : MonoBehaviour
     public float input;
     private Rigidbody2D rb;
 
-    private bool isGrounded;
+    [HideInInspector]
+    public bool isGrounded;
     public Transform groundCheck;
     public float checkRadius;
     public LayerMask whatIsGround;
@@ -40,6 +41,12 @@ public class playerMovement : MonoBehaviour
         else if (input > 0) {
             transform.eulerAngles = new Vector3(0f, 0f, 0f);
             CreateDust();
+        }
+        if (input == 0) {
+            gameObject.GetComponent<Animator>().SetBool("isRunning", false);
+        }
+        else {
+            gameObject.GetComponent<Animator>().SetBool("isRunning", true);
         }
         // input = CrossPlatformInputManager.GetAxis("Horizontal");
         rb.velocity = new Vector2(input * speed, rb.velocity.y);
