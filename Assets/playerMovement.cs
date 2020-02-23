@@ -27,6 +27,8 @@ public class playerMovement : MonoBehaviour
 
     public timeManager timeManager;
 
+    public GameObject killEnemyEffect;
+
     void Start() {
         rb = GetComponent<Rigidbody2D>();
     }
@@ -53,8 +55,12 @@ public class playerMovement : MonoBehaviour
 
     }
 
-    // Update is called once per frame
     void Update() {
+
+        if (transform.position.y < -10f) {
+            GameObject.Find("GameManager").GetComponent<gameManager>().RestartCurrentScene();
+        }
+
         //jump code
         if(Input.GetButtonDown("Jump") && isGrounded == true) {
             rb.velocity = Vector2.up * jumpForce;
@@ -73,5 +79,22 @@ public class playerMovement : MonoBehaviour
 
     void CreateDust() {
         dustPS.Play();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other.gameObject.CompareTag("Apple")) {
+            other.gameObject.SetActive(false);
+            FindObjectOfType<audioManager>().Play("Spinach");
+            GameObject.Find("GameManager").GetComponent<gameManager>().AdvanceToNextScene();
+        }
+        if (other.gameObject.CompareTag("Spikes")) {
+            gameObject.SetActive(false);
+            if (GameObject.Find("Pistol") != null)
+                GameObject.Find("Pistol").SetActive(false);
+            if (GameObject.Find("GameManager") != null)
+                GameObject.Find("GameManager").GetComponent<gameManager>().RestartCurrentScene();
+            Instantiate(killEnemyEffect, transform.position, Quaternion.LookRotation(transform.up));
+            FindObjectOfType<audioManager>().Play("Blood");
+        }
     }
 }

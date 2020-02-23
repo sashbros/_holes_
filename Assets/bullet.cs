@@ -28,6 +28,7 @@ public class bullet : MonoBehaviour
                 hitInfo.collider.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(transform.up * killForce, hitInfo.collider.transform.position);
                 Instantiate(killEnemyEffect, hitInfo.collider.transform.position, Quaternion.LookRotation(transform.up));
                 hitInfo.collider.transform.parent.gameObject.GetComponent<EnemyScript>().killed = true;
+                FindObjectOfType<audioManager>().Play("Blood");
             }
             DestroyBullet();
         }

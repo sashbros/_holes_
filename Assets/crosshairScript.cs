@@ -4,13 +4,20 @@ using UnityEngine;
 
 public class crosshairScript : MonoBehaviour
 {
+    public int whatToDo; //1 meaning crosshair 0 meaning cursor
     void Start() {
-        Cursor.visible = false;
+        if (whatToDo == 1)
+            Cursor.visible = false;
+        else {
+            Cursor.visible = true;
+        }
     }
 
     // Update is called once per frame
     void Update() {
-        Vector2 curPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        transform.position = curPos;
+        if (whatToDo == 1) {
+            Vector2 curPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            transform.position = curPos;
+        }
     }
 }

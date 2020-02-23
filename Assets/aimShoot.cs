@@ -47,6 +47,7 @@ public class aimShoot : MonoBehaviour
                 if (Input.GetMouseButton(0)) {
                     Instantiate(bullet, gunStartRight.position, transform.rotation * Quaternion.Euler(0f, 0f, -90f));
                     Instantiate(gunShell, (gunStartRight.position+gunStartLeft.position)/2f, Quaternion.identity);
+                    FindObjectOfType<audioManager>().Play("Bullet");
                     // shell = Instantiate(gunShell, player.transform.position, Quaternion.identity);
                     timeBtwShots = startTimeBtwShots;
                 }
@@ -64,6 +65,7 @@ public class aimShoot : MonoBehaviour
                 if (Input.GetMouseButton(0)) {
                     Instantiate(bullet, gunStartLeft.position, transform.rotation * Quaternion.Euler(0f, 0f, 90f));
                     Instantiate(gunShell, (gunStartRight.position+gunStartLeft.position)/2f, Quaternion.identity);
+                    FindObjectOfType<audioManager>().Play("Bullet");
                     timeBtwShots = startTimeBtwShots;
                 }
             }

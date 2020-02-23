@@ -17,6 +17,6 @@ public class timeManager : MonoBehaviour
     public void doSlowMotion() {
         Time.timeScale = slowDownFactor;
         Time.fixedDeltaTime = Time.timeScale * 0.02f;
-        GameObject.Find("SpiderRope").GetComponent<spiderRope>().pullForce = 700f;
+        GameObject.Find("SpiderRope").GetComponent<spiderRope>().pullForce = 1500f;
     }
 }

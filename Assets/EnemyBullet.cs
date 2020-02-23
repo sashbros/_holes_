@@ -36,6 +36,7 @@ public class EnemyBullet : MonoBehaviour
             other.gameObject.SetActive(false);
             GameObject.Find("Pistol").SetActive(false);
             GameObject.Find("GameManager").GetComponent<gameManager>().RestartCurrentScene();
+            FindObjectOfType<audioManager>().Play("Blood");
         }
         if (other.CompareTag("Ground")) {
             DestroyEnemyBullet();
